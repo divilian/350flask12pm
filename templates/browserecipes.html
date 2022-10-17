@@ -11,7 +11,7 @@
     <table>
     <tr><th>Recipe</th><th>Cartons ordered</th></tr>
     {% for recipe in recipestuff %}
-        <tr><td>{{recipe[0]}}</td><td>{{recipe[1]}}</td></tr>
+        <tr><td><a href="{{url_for('recipedetails',recipe=recipe[0])}}">{{recipe[0]}}</a></td><td>{{recipe[1]}}</td></tr>
     {% endfor %}
     </table>
 {% else %}

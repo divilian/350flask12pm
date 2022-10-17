@@ -33,6 +33,9 @@ def browserecipes():
     return render_template("browserecipes.html", flavor=request.args['flavor'],
         recipestuff=recipestuff)
 
+@maxx.route("/recipedetails")
+def recipedetails():
+    return f"You just asked for the details for {request.args['recipe']}!"
 
 
 

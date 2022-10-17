@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Check out our {{flavor}}-based recipes!</title>
+    <style type="text/css">
+        th,td { border:1px solid black; padding:15px; }
+    </style>
+</head>
+<body>
+{% if recipestuff|length != 0 %}
+    <p>Check out our {{flavor}}-based recipes!</p>
+    <table>
+    <tr><th>Recipe</th><th>Cartons ordered</th></tr>
+    {% for recipe in recipestuff %}
+        <tr><td>{{recipe[0]}}</td><td>{{recipe[1]}}</td></tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>Sorry, we've never heard of "{{flavor}}" ice cream!</p>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<p>What's your favorite flavor of ice cream?</p>
+<form method="GET">
+    <select name="faveflave">
+    {% for flavorname in flavornames %}
+        <option value="{{flavorname[0]}}">{{flavorname[0]}}</option>
+    {% endfor %}
+    </select>
+    <input type="submit" value="Yumm!!" />
+</form>
+</body>
+</html>

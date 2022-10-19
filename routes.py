@@ -12,7 +12,7 @@ def noor():
     else:
         conn = sqlite3.connect("bj.sqlite")
         cur = conn.cursor()
-        cur.execute("select distinct flavorName from recipe")
+        cur.execute("select distinct flavorName from recipe order by flavorName")
         our_query_results = cur.fetchall()
         conn.close()
         return render_template("chooseflavor.html",
@@ -35,7 +35,10 @@ def browserecipes():
 
 @maxx.route("/recipedetails")
 def recipedetails():
-    return f"You just asked for the details for {request.args['recipe']}!"
+    if 'recipe' in request.args:
+        return render_template("recipedetails.html",
+            recipename=request.args['recipe'])
+    return "<HTML><BODY>Shane is evil!</BODY></HTML>"
 
 
 

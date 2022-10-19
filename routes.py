@@ -35,7 +35,15 @@ def browserecipes():
 
 @maxx.route("/recipedetails")
 def recipedetails():
-    if 'recipe' in request.args:
+    if 'recipe' not in request.args:
+        return "<HTML><BODY>Please give us a recipe bruh.</BODY></HTML>"
+
+    if 'quantity' in request.args:
+        # Aha! They just pressed submit on the order form.
+        pass
+    
+    else:
+        # They are new to this page: just show them the recipe details.
         conn = sqlite3.connect("bj.sqlite")
         cur = conn.cursor()
         cur.execute("select flavorName from recipe where name=?",
@@ -48,7 +56,6 @@ def recipedetails():
         return render_template("recipedetails.html",
             recipename=request.args['recipe'], flavor=specificFlavor,
             mixins=mixins)
-    return "<HTML><BODY>Please give us a recipe bruh.</BODY></HTML>"
 
 
 

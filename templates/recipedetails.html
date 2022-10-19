@@ -11,5 +11,11 @@ adds the following mixins:</p>
 {% for mixin in mixins %}<li>{{mixin[0]}}</li>
 {% endfor %}</ul>
 
+<form method="get">
+How many cartons of {{recipename}} would you like today?
+<input type=hidden name=recipe value={{recipename}} />
+<input type=text name=quantity size=1 />
+<input type=submit value="Yumm! Send soon please!" />
+</form>
 </body>
 </html>

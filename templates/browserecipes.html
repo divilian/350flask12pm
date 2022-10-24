@@ -1,11 +1,6 @@
-<html>
-<head>
-    <title>Check out our {{flavor}}-based recipes!</title>
-    <style type="text/css">
-        th,td { border:1px solid black; padding:15px; }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Check out our {{flavor}}-based recipes!{% endblock %}
+{% block content %}
 {% if recipestuff|length != 0 %}
     <p>Check out our {{flavor}}-based recipes!</p>
     <table>
@@ -17,5 +12,4 @@
 {% else %}
     <p>Sorry, we've never heard of "{{flavor}}" ice cream!</p>
 {% endif %}
-</body>
-</html>
+{% endblock %}

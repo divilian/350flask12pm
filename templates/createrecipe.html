@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Create your own recipe!</h1>
+<form method="post">
+<p>What do you want to call your new creation?</p>
+<input type="text" name="newrecipename" />
+<br/>
+<p>What base flavor would you like to base your recipe on?</p>
+{% for flavor in flavornames %}
+    {{flavor[0]}} <input type="radio" name="baseflavor" value="{{flavor[0]}}" />
+<br/>
+{% endfor %}
+<p>Choose any of the following mixins! (or all of them!)</p>
+{% for mixin in mixins %}
+    {{mixin[0]}} <input type="checkbox" name="{{mixin[0]}}" value="{{mixin[0]}}" />
+<br/>
+{% endfor %}
+
+<input type="submit" name="rachel" value="That sounds yummy!" />
+</form>
+{% endblock %}

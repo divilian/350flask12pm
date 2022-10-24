@@ -1,8 +1,6 @@
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Welcome to the page for {{recipename}}!{% endblock %}
+{% block content %}
 <h1>Welcome to the page for {{recipename}}!</h1>
 <p>Our award-winning {{recipename}} starts with luscious <b>{{flavor}}</b> ice cream, and
 adds the following mixins:</p>
@@ -13,9 +11,8 @@ adds the following mixins:</p>
 
 <form method="get">
 How many cartons of {{recipename}} would you like today?
-<input type=hidden name=recipe value={{recipename}} />
+<input type=hidden name=recipe value="{{recipename}}" />
 <input type=text name=quantity size=1 />
 <input type=submit value="Yumm! Send soon please!" />
 </form>
-</body>
-</html>
+{% endblock %}

@@ -34,6 +34,33 @@ def browserecipes():
     return render_template("browserecipes.html", flavor=request.args['flavor'],
         recipestuff=recipestuff)
 
+@maxx.route("/createrecipe", methods=['GET','POST'])
+def createrecipe():
+    if request.method == "POST":
+        conn = sqlite3.connect("bj.sqlite")
+        cur = conn.cursor()
+        for key,value in request.form.items():
+            if key==value:
+                cur.execute("insert into ingredients values (?,?)",
+                    (request.form['newrecipename'], key))
+        # They just entered a new recipe! Record it.
+        cur.execute("insert into recipe values (?, 0, ?)",
+            (request.form['newrecipename'], request.form['baseflavor']))
+        conn.commit()
+        return redirect(url_for('recipedetails',
+            recipe=request.form['newrecipename']))
+    else:
+        # This is the first time they're getting the create recipe form.
+        conn = sqlite3.connect("bj.sqlite")
+        cur = conn.cursor()
+        cur.execute("select distinct name from flavor")
+        flavornames = cur.fetchall()
+        cur.execute("select name from mixin")
+        mixins = cur.fetchall()
+        conn.close()
+        return render_template("createrecipe.html", flavornames=flavornames,
+            mixins=mixins)
+
 @maxx.route("/recipedetails")
 def recipedetails():
     if 'recipe' not in request.args:

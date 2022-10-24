@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>{% block title %}Welcome to Ben and Jerry's!{% endblock %}</title>
+</head>
+<body>
+<p style="font-style:large;color:red;">{{msg}}</p>
+<center>
+<span style="font-size:large;">Welcome to <span style="color:red;">Ben</span>
+<span style="color:blue;">and</span> <span style="color:green;">Jerry's</span> ice cream!</span>
+</center>
+<hr/>
+{% block content %}
+<p>Shane is late to class again</p>
+{% endblock %}
+<hr/>
+<center>
+<a href="{{url_for('createrecipe')}}">Create your own recipe!</a><br/>
+<img width=50 src="{{url_for('static',filename='americonedream.png')}}" />
+</center>
+</body>
+</html>

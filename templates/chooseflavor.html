@@ -1,9 +1,5 @@
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<p style="font-style:large;color:red;">{{msg}}</p>
+{% extends "base.html" %}
+{% block content %}
 <p>What's your favorite flavor of ice cream?</p>
 <form method="GET">
     <select name="faveflave">
@@ -13,5 +9,4 @@
     </select>
     <input type="submit" value="Yumm!!" />
 </form>
-</body>
-</html>
+{% endblock %}

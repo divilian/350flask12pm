@@ -10,13 +10,14 @@ def noor():
         return redirect(url_for("browserecipes",
             flavor=request.args['faveflave']))
     else:
+        msg = request.args['msg'] if 'msg' in request.args else ""
         conn = sqlite3.connect("bj.sqlite")
         cur = conn.cursor()
         cur.execute("select distinct flavorName from recipe order by flavorName")
         our_query_results = cur.fetchall()
         conn.close()
         return render_template("chooseflavor.html",
-            flavornames=our_query_results)
+            flavornames=our_query_results, msg=msg)
 
 @maxx.route("/ben")
 def ben():
@@ -40,7 +41,14 @@ def recipedetails():
 
     if 'quantity' in request.args:
         # Aha! They just pressed submit on the order form.
-        pass
+        conn = sqlite3.connect("bj.sqlite")
+        cur = conn.cursor()
+        cur.execute("update recipe set cartonsordered=cartonsordered+? " +
+            " where name=?",
+            (int(request.args['quantity']), request.args['recipe'],))
+        conn.commit()
+        return redirect(url_for("noor",
+            msg=f"Thanks for your {request.args['quantity']}-carton order!"))
     
     else:
         # They are new to this page: just show them the recipe details.
